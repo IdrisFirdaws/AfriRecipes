@@ -1,0 +1,41 @@
+.section.skills{
+    .col.gallery{
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        .img{
+            width: 100%;
+        }
+    }
+    .col.typography{
+        .skill-item{
+            border-left: 4px solid var(--special-color);
+            margin-bottom: 5px;
+            padding: 5px;
+            columns: var(--text-light);
+            font-weight: bold;
+            letter-spacing: 1px;
+            transform: translateX(100%);
+            opacity: 0;
+            animation: getAnimationDuration(.5s) slideInRight forwards;
+            @for $i from 2 through 7{
+                &:nth-child(#{$i}){
+                    animation-delay: #{$i * .1}s;
+                }
+            }
+        }
+        .btn{
+            margin-top: 10px;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 768px){
+    .skill-item{
+        display: inline-block;
+        margin-right: 15px;
+        margin-bottom: 25px;
+    }   
+}

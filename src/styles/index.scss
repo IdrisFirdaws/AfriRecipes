@@ -1,0 +1,207 @@
+:root {
+  --background-color: #fff;
+  --background-light: #fff;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --primary-color: rgb(5, 156, 182);
+  --text-color: #0a0a0a;
+  --special-color: #fa43ba;
+  --text-light: #575757;
+  --font-size: 16px;
+  --animation-speed: 1;
+}
+
+@function getAnimationDuration($duration: number) {
+  @return calc($duration * var(--animation-speed));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // font-family: "Roboto", sans-serif;
+}
+
+.App {
+  width: 99vw;
+  overflow-x: hidden;
+}
+
+body {
+  padding-top: 55px;
+  font-size: var(--font-size);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.1em;
+}
+
+.container {
+  padding-inline: 20vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  .title {
+    color: var(--text-color);
+    font-size: 2em;
+    margin-bottom: 8px;
+  }
+  .detail {
+    color: var(--text-light);
+    font-size: 1em;
+    letter-spacing: 1px;
+    line-height: 1.3em;
+    margin-bottom: 20px;
+  }
+  .col {
+    width: 50%;
+  }
+  &.d-block {
+    display: block;
+  }
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px var(--shadow-color);
+  &:hover {
+    box-shadow: 0 1px 3px var(--shadow-color);
+    padding: 10.5px 15.5px;
+  }
+}
+
+.custom-image {
+  background-color: red;
+  height: 0;
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+img {
+  object-fit: cover;
+}
+
+main {
+  padding: 3vw 10%;
+}
+
+.content {
+  padding: 20px 0;
+}
+
+// this shows diffrent ways to import into scss
+
+@import url(partials/_animations.scss);
+@import "partials/navbar.scss";
+@import "partials/hero-section.scss";
+@import "partials/_skill-section";
+@import "partials/extra.scss";
+@import "partials/footer.scss";
+@import "partials/_prev-searches";
+@import "partials/recipes-section.scss";
+@import "partials/_grocery-list";
+@import "partials/recipe-detail.scss";
+@import "partials/mealPlanner.scss";
+
+// @import url(partials/_settings.scss);
+
+@media screen and (max-width: 1280px) {
+  .container {
+    padding-inline: 18vw;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    padding-inline: 12vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding-inline: 6vw;
+  }
+
+  .section {
+    flex-wrap: wrap;
+    .col {
+      width: 90%;
+      padding: 0 !important;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding-inline: 3vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    padding: 50px 10%;
+  }
+  .meal-plan-table {
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2); /* Adjust as needed */
+      border-radius: 6px;
+    }
+    .td {
+      padding: 10px 0 !important;
+    }
+    .days {
+      padding: 10px 0 !important;
+    }
+  }
+
+  .meal-plan {
+    width: 100%;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2); /* Adjust as needed */
+      border-radius: 6px;
+    }
+    .previous-meal-plan-table {
+      padding: 0 !important;
+      width: 100% !important;
+      overflow-x: auto !important;
+
+      .tbody {
+        width: 100%;
+        overflow-x: auto;
+      }
+    }
+  }
+}

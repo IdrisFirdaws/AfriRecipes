@@ -1,0 +1,41 @@
+.grocery {
+  flex-direction: column;
+  padding: 30px 40px;
+  background-color: var(--background-color);
+  box-shadow: 0 3px 6px var(--special-color);
+  border-radius: 5px;
+}
+
+form.section {
+  .grocery-input {
+    padding: 13px 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px 0 0 4px;
+  }
+  .grocery-btn {
+    background-color: var(--background-color);
+    box-shadow: none;
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 0 4px 4px 0;
+    border-left: 5px solid var(--primary-color);
+  }
+}
+
+.grocery-item {
+  justify-content: space-between;
+  background-color: var(--background-light);
+  box-shadow: 0 1px 4px var(--shadow-color);
+  padding: 13px 25px;
+  span,
+  input {
+    font-size: 1.2em;
+    width: 45vw;
+  }
+  .props {
+    padding-right: 8px;
+    .icon {
+      padding: 0 5px;
+    }
+  }
+}

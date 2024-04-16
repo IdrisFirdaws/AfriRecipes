@@ -1,0 +1,57 @@
+.meal-planner {
+  width: 100%;
+
+  .section.meal-plan {
+    flex-direction: column;
+    .meal-plan-table {
+      margin: 20px 0;
+      padding: 30px 40px;
+      background-color: var(--background-color);
+      box-shadow: 0 3px 6px var(--special-color);
+      border-radius: 5px;
+      thead {
+        color: var(--primary-color);
+        th {
+          padding: 10px 0;
+        }
+      }
+      td {
+        padding-left: 10px;
+        padding-bottom: 5px;
+        input {
+          padding: 5px;
+          border: 1px solid var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
+.section.previous-meal-plans {
+  flex-direction: column;
+  .prevMealPlanTitle {
+    font-size: 1.5em;
+    max-block-size: 30px;
+  }
+  .previous-meal-plan-table {
+    margin: 20px 0;
+    padding: 30px 40px;
+    background-color: var(--background-color);
+    box-shadow: 0 3px 6px var(--special-color);
+    border-radius: 5px;
+    thead {
+      color: var(--primary-color);
+      th {
+        padding: 10px 0;
+      }
+    }
+    td {
+      padding: 10px;
+      border: 1px solid var(--primary-color);
+    }
+    .days {
+      border: none;
+      padding: 10px 15px;
+    }
+  }
+}

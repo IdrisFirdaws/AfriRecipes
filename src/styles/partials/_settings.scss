@@ -1,0 +1,45 @@
+.d-block h2{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.options-container{
+    box-shadow: 0 5px 10px var(--shadow-color);
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--background-color);
+    border-left: 6px solid var(--primary-color);
+    margin: 15px 0 25px 0;
+    display: flex;
+    gap: 15px;
+    .option{
+        height: 40px;
+        width: 40px;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.light{
+            background-color: #fff;
+        }
+        &.dark{
+            background-color: rgb(29, 29, 29);
+        }
+        .check{
+            height: 30px;
+            width: 30px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            .svg{
+                height: 25px;
+                width:25px;
+            }
+        }
+    }
+    .btn span{
+        margin-left: 5px;
+    }
+}
