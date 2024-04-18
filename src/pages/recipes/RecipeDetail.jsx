@@ -1,9 +1,33 @@
-import React from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function RecipeDetail() {
     const { id } = useParams();
-    const recipe = useLoaderData();
+    const [recipe, setRecipe] = useState(null);
+
+    useEffect(() => {
+        async function fetchRecipe() {
+            try {
+                const response = await fetch(
+                    "https://idrisfirdaws.github.io/AfriRecipe-API/recipes.json"
+                );
+                if (!response.ok) {
+                    throw new Error("Failed to fetch recipes");
+                }
+                const data = await response.json();
+                const selectedRecipe = data.recipes.find(recipe => recipe.id === parseInt(id)); // Convert id to the same type as recipe.id
+                setRecipe(selectedRecipe);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        fetchRecipe();
+    }, [id]); // Include id as a dependency
+
+    if (!recipe) {
+        return <div>Loading...</div>; // or any other loading indicator
+    }
 
     return (
         <div className="recipe-details">
@@ -47,12 +71,12 @@ export default function RecipeDetail() {
     );
 }
 
-export const recipeDetailsLoader = async ({ params }) => {
-    const { id } = params;
-    const res = await fetch(`http://localhost:4000/recipes/${id}`);
+
+export const recipeDetailsLoader = async () => {
+    const res = await fetch('https://idrisfirdaws.github.io/AfriRecipe-API/recipes.json');
 
     if (!res.ok) {
-        throw Error('Could not find that recipe');
+        throw Error('Could not fetch recipes');
     }
 
     return res.json();

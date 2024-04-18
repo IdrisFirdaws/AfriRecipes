@@ -1,36 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
 
 export default function Recipes() {
-    const recipes = useLoaderData();
-    const [searchQuery, setSearchQuery] = useState('');
+    const [recipes, setRecipes] = useState([]);
 
-    // Filter recipes based on search query
-    const filteredRecipes = recipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    useEffect(() => {
+        async function fetchRecipes() {
+            try {
+                const response = await fetch(
+                    "https://idrisfirdaws.github.io/AfriRecipe-API/recipes.json"
+                );
+                if (!response.ok) {
+                    throw new Error("Failed to fetch recipes");
+                }
+                const data = await response.json();
+                setRecipes(data.recipes);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
 
-    // Handle search query change
-    const handleSearchChange = event => {
-        setSearchQuery(event.target.value);
-    };
+        fetchRecipes();
+    }, []);
+
+
 
     return (
         <>
-            {/* Search input field */}
-            <div className="search-box">
-                <input
-                    type="text"
-                    placeholder="Search recipes"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                />
-                <button className='btn'>Search</button>
-            </div>
-            <div className='recipes-container'>
-
-                {/* Display filtered recipes */}
-                {filteredRecipes.map(recipe => (
+            <div className="recipes-container">
+                {recipes.map(recipe => (
                     <div className='recipe-card' key={recipe.id}>
                         <Link to={recipe.id.toString()} className='recipe-card-info' >
                             <img src={recipe.image} alt="" className='recipe-img' />
@@ -41,12 +39,13 @@ export default function Recipes() {
                     </div>
                 ))}
             </div>
+
         </>
     );
 }
 
 export const recipesLoader = async () => {
-    const res = await fetch('http://localhost:4000/recipes');
+    const res = await fetch('https://idrisfirdaws.github.io/AfriRecipe-API/recipes.json');
 
     if (!res.ok) {
         throw Error('Could not fetch recipes');

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 export default function Navbar() {
     const location = useLocation();
-    const [showSidebar, setShowSidebar] = useState(false); // State to toggle sidebar
+    // const [showSidebar, setShowSidebar] = useState(false); // State to toggle sidebar
 
     const links = [
         {
@@ -14,6 +14,7 @@ export default function Navbar() {
             name: "Recipes",
             path: "/recipes",
         },
+
     ];
 
     // const toggleSidebar = () => {
