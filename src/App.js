@@ -18,6 +18,8 @@ import NotFound from "./pages/NotFound";
 import RecipeDetail, {
   recipeDetailsLoader,
 } from "./pages/recipes/RecipeDetail";
+import GroceryList from "./pages/GroceryList";
+import MealPlanner from "./pages/MealPlanner";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +40,10 @@ const router = createBrowserRouter(
           errorElement={<RecipeError />}
         />
       </Route>
+
+      {/* <Route path="grocery" element={<GroceryList />} />
+
+      <Route path="meals" element={<MealPlanner />} /> */}
 
       <Route path="*" element={<NotFound />} />
     </Route>

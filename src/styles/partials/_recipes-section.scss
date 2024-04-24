@@ -40,9 +40,10 @@
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 5px 10px var(--shadow-color);
-  padding: 10px;
+  padding: 10px 10px 70px 10px;
   width: 250px;
-  min-height: 500px;
+  // height: fit-content;
+  min-height: 450px;
   .recipe-card-info {
     display: flex;
     flex-direction: column;
@@ -65,7 +66,10 @@
       color: var(--text-light);
       font-size: 1em;
       letter-spacing: 1px;
-      // text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
     .btn {
       position: absolute;
@@ -81,11 +85,16 @@
   }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 850px) {
   .recipes-container {
     gap: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .recipes-container {
     .recipe-card {
-      width: 180px;
+      width: 100% !important;
     }
   }
 }

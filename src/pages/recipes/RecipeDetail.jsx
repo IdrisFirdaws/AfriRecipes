@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function RecipeDetail() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scrolls to the top when the component mounts or updates
+    }, []); // Empty dependency array ensures it only runs once on mount
+
+
     const { id } = useParams();
     const [recipe, setRecipe] = useState(null);
 

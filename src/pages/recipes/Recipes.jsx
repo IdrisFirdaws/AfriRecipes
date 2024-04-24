@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);
@@ -14,7 +14,9 @@ export default function Recipes() {
                     throw new Error("Failed to fetch recipes");
                 }
                 const data = await response.json();
-                setRecipes(data.recipes);
+                // Shuffle the recipes array
+                const shuffledRecipes = shuffleArray(data.recipes);
+                setRecipes(shuffledRecipes);
             } catch (error) {
                 console.error("Error:", error);
             }
@@ -23,7 +25,15 @@ export default function Recipes() {
         fetchRecipes();
     }, []);
 
-
+    // Function to shuffle array
+    const shuffleArray = (array) => {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        return shuffledArray;
+    };
 
     return (
         <>
@@ -31,9 +41,9 @@ export default function Recipes() {
                 {recipes.map(recipe => (
                     <div className='recipe-card' key={recipe.id}>
                         <Link to={recipe.id.toString()} className='recipe-card-info' >
-                            <img src={recipe.image} alt="" className='recipe-img' />
+                            <img src={recipe.image} alt={recipe.image} className='recipe-img' />
                             <div className='recipe-title'>{recipe.title}</div>
-                            <p className='recipe-desc'>{recipe.desc}</p>
+                            <p className='recipe-desc'>{recipe.desc.length > 70 ? recipe.desc.substring(0, 70) + '...' : recipe.desc}</p>
                             <button className='btn'>View recipe</button>
                         </Link>
                     </div>
@@ -43,6 +53,7 @@ export default function Recipes() {
         </>
     );
 }
+
 
 export const recipesLoader = async () => {
     const res = await fetch('https://idrisfirdaws.github.io/AfriRecipe-API/recipes.json');
